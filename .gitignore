@@ -4,6 +4,9 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 
+### SASS ###
+.sass-cache/
+
 ### STS ###
 .apt_generated
 .classpath
@@ -13,11 +16,23 @@ target/
 .springBeans
 .sts4-cache
 
+### Maven ###
+/log/
+/target/
+
+### Package Files ###
+*.jar
+*.war
+*.ear
+*.db
+
 ### IntelliJ IDEA ###
-.idea
-*.iws
+.idea/
 *.iml
+*.iws
 *.ipr
+*.ids
+*.orig
 
 ### NetBeans ###
 /nbproject/private/
@@ -31,3 +46,42 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Eclipse ###
+*.pydevproject
+.metadata
+tmp/
+tmp/**/*
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+/src/main/resources/rebel.xml
+
+### External tool builders ###
+.externalToolBuilders/**
+
+### Locally stored "Eclipse launch configurations" ###
+*.launch
+
+### CDT-specific ###
+.cproject
+
+### PDT-specific ###
+.buildpath
+
+### Directories ###
+/bin/
+/deploy/
+
+### Logs ###
+*.log
+
+### Others ###
+*.class
+*.*~
+*~
+.merge_file*
