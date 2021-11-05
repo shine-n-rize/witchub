@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class HomePageController {
-    SecurityService securityService;
+    SecurityS securityService;
 
     @Autowired
     public HomePageController(SecurityService securityService) {
