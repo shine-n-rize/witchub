@@ -27,42 +27,34 @@ public class ProductController {
         this.productService = productService;
     }
 
-//    @GetMapping("/addProduct")
-//    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
-//    public String addProduct(Model model){
-//        model.addAttribute("user",new User());
-//        model.addAttribute("seller",new Seller());
-//        model.addAttribute("product", new Product());
-//        System.out.println("hello");
-//        return "/seller/sellerAddProduct";
-//    }
+    @GetMapping("/addProduct")
+    @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
+    public String addProduct(Model model){
+        model.addAttribute("user",new User());
+        model.addAttribute("seller",new Seller());
+        model.addAttribute("product", new Product());
+        System.out.println("hello");
+        return "/seller/sellerAddProduct";
+    }
 
 //    @GetMapping("/addProduct")
-//    @PostMapping("/addProduct")
-    @RequestMapping(value = "/addProduct", method = {RequestMethod.GET, RequestMethod.POST})
+    @PostMapping("/addProduct")
+//    @RequestMapping(value = "/addProduct", method = {RequestMethod.GET, RequestMethod.POST})
     public String addProduct(@RequestParam("image") MultipartFile multipartFile, @Valid @ModelAttribute("product")Product product, HttpServletRequest hr, BindingResult result, SecurityContextHolderAwareRequestWrapper request, Model model) throws IOException {
-        if(hr.getMethod()=="GET"){
-            model.addAttribute("user",new User());
-            model.addAttribute("seller",new Seller());
-            model.addAttribute("product", new Product());
-            System.out.println("hello");
-            return "/seller/sellerAddProduct";
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        fileName = fileName.replaceAll("\\s", "");
+        System.out.println(fileName);
+        product.setImage(fileName);
+        productService.addProduct(request.getRemoteUser(), product);
+        System.out.println(product.toString());
+        String uploadDir = "src/main/resources/static/assets/products/" + product.getProductId();
+        try {
+            FileUploadUtility.saveFile(uploadDir, fileName, multipartFile);
+        } catch (IOException e) {
+            System.out.println(e);
         }
-        else {
-            String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-            fileName = fileName.replaceAll("\\s", "");
-            System.out.println(fileName);
-            product.setImage(fileName);
-            productService.addProduct(request.getRemoteUser(), product);
-            System.out.println(product.toString());
-            String uploadDir = "src/main/resources/static/assets/products/" + product.getProductId();
-            try {
-                FileUploadUtility.saveFile(uploadDir, fileName, multipartFile);
-            } catch (IOException e) {
-                System.out.println(e);
-            }
-            model.addAttribute("message", "Your product has been added!");
-            return "redirect:/self";
-        }
+        model.addAttribute("message", "Your product has been added!");
+        return "redirect:/self";
+
     }
 }
