@@ -13,7 +13,6 @@ public class Order {
 
     // foreign key(s)
     private int paymentId;
-    private int buyerId;
     private int cartId;
 
     public Order(int orderId, Date datePlaced, String status, int paymentId, int buyerId, int cartId) {
@@ -21,7 +20,6 @@ public class Order {
         this.datePlaced = datePlaced;
         this.status = status;
         this.paymentId = paymentId;
-        this.buyerId = buyerId;
         this.cartId = cartId;
     }
 
@@ -57,14 +55,6 @@ public class Order {
         this.paymentId = paymentId;
     }
 
-    public int getBuyerId() {
-        return buyerId;
-    }
-
-    public void setBuyerId(int buyerId) {
-        this.buyerId = buyerId;
-    }
-
     public int getCartId() {
         return cartId;
     }
@@ -80,7 +70,7 @@ public class Order {
                 ", datePlaced=" + datePlaced +
                 ", status='" + status + '\'' +
                 ", paymentId=" + paymentId +
-                ", buyerId=" + buyerId +
+                ", buyerId=" +
                 ", cartId=" + cartId +
                 '}';
     }

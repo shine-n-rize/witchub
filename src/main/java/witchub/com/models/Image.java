@@ -1,14 +1,29 @@
 package witchub.com.models;
 
+import javax.validation.constraints.NotNull;
+
 public class Image {
+
+    @NotNull
+    private int imageId;
+
     private String linkToImage;
 
     // foreign key(s)
     private int productId;
 
-    public Image(String linkToImage, int productId) {
+    public Image(int imageId, String linkToImage, int productId) {
+        this.imageId = imageId;
         this.linkToImage = linkToImage;
         this.productId = productId;
+    }
+
+    public int getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(int imageId) {
+        this.imageId = imageId;
     }
 
     public String getLinkToImage() {
@@ -30,7 +45,8 @@ public class Image {
     @Override
     public String toString() {
         return "Image{" +
-                "linkToImage='" + linkToImage + '\'' +
+                "imageId=" + imageId +
+                ", linkToImage='" + linkToImage + '\'' +
                 ", productId=" + productId +
                 '}';
     }

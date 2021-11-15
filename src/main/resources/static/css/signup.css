@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+:root {
+    --my-orange: rgb(212, 109, 6);
+    --my-violet: rgba(107, 15, 59, 0.92);
+    --my-light-violet: rgb(222, 22, 119);
+    --my-med-violet: rgb(179, 24, 104);
+}
+*{
+    box-sizing: border-box;
+
+}
+body {
+    background: white;
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: -20px 0 50px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(50,58,69,0.9)));
+    background-image: linear-gradient(180deg, rgba(150,58,69,0.25), rgba(150,58,69,0.54)), url("/assets/b3.jpg");
+    flex-direction: column;
+    background-position: 0px 0px, 100% 50%;
+    background-size: auto, cover;
+    white-space: normal;
+    object-fit: fill;
+    -o-object-fit: fill;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+}
+.container{
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25),
+    0 10px 10px rgba(0,0,0,0.22);
+    position: relative;
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+
+}
+h1{
+    font-weight: bold;
+    margin: 0;
+    margin-bottom: 10px;
+}
+p{
+    color: white;
+    font-size: 14px;
+    font-weight: 200;
+    line-height: 20px;
+    letter-spacing: 0.5px;
+    margin: 20px 0 30px ;
+}
+.form-container form{
+    background: var(--my-violet);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+}
+.form-container input{
+    background: rgb(236, 236, 236);
+    border: none;
+    padding: 10px 12px;
+    margin: 5px 0 ;
+    width: 100%;
+    font-size: 12px;
+}
+button{
+    font-weight: bold;
+    letter-spacing: 1px;
+    padding: 12px 45px;
+    font-size: 15px;
+    border-radius: 20px;
+    border: 1px solid #fc4221;
+    background: #ff4b2b;
+    color: white;
+    transition: transform 80ms ease-in;
+    text-transform: uppercase;
+
+}
+.bsign{
+    margin-top: 10px;
+}
+button:active{
+    transform: scale(0.95);
+}
+button:focus{
+    outline: none;
+}
+button.button{
+    background: transparent;
+    border-color: white;
+}
+
+.form-container{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container{
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+.sign-up-container{
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+.slide-container{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+.slide{
+    background: var(--my-violet);
+    /*background: linear-gradient(to right, #ff4b2b, #ff416c);*/
+    color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 0;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200% ;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+.slide-side{
+    position: absolute;
+    top: 0;
+    /*padding: 0 40px ;*/
+    height: 100%;
+    width: 50%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+
+}
+.slide-right{
+    right: 0 ;
+    transform: translateX(0);
+}
+a{
+    text-decoration: none;
+    color: black;
+    font-size: 12px;
+    margin: 10px 0 10px 0 ;
+}
+.slide-left{
+    left: 0 ;
+    transform: translateX(-20);
+}
+
+.container.right-side-active .sign-in-container{
+    transform: translateX(100%);
+}
+.container.right-side-active .slide-container{
+    transform: translateX(-100%);
+}
+.container.right-side-active .sign-up-container{
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+}
+.container.right-side-active .slide{
+    transform: translateX(50%);
+}

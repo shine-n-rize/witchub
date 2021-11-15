@@ -14,14 +14,14 @@ public class Review {
     private String comment;
 
     // foreign key(s)
-    private int buyerId;
+    private int userId;
     private int productId;
 
     public Review(int reviewId, int rating, String comment, int buyerId, int productId) {
         this.reviewId = reviewId;
         this.rating = rating;
         this.comment = comment;
-        this.buyerId = buyerId;
+        this.userId = buyerId;
         this.productId = productId;
     }
 
@@ -49,12 +49,12 @@ public class Review {
         this.comment = comment;
     }
 
-    public int getBuyerId() {
-        return buyerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setBuyerId(int buyerId) {
-        this.buyerId = buyerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getProductId() {
@@ -71,7 +71,7 @@ public class Review {
                 "reviewId=" + reviewId +
                 ", rating=" + rating +
                 ", comment='" + comment + '\'' +
-                ", buyerId=" + buyerId +
+                ", buyerId=" + userId +
                 ", productId=" + productId +
                 '}';
     }

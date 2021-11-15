@@ -4,14 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SecurityServiceImpl {
+public class SecurityServiceImpl implements SecurityService {
     private AuthenticationManager authenticationManager;
     private UserDetailsServiceImpl userDetailsService;
 
@@ -30,6 +28,7 @@ public class SecurityServiceImpl {
     public String findLoggedInUsername() {
         try{
             Object userDetails = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//            System.out.println(userDetails.getClass());
             if (userDetails instanceof UserDetails) {
                 return ((UserDetails) userDetails).getUsername();
             }
@@ -46,5 +45,10 @@ public class SecurityServiceImpl {
                 userDetails, password, userDetails.getAuthorities()
         );
         authenticationManager.authenticate(usernamePasswordAuthenticationToken);
+    }
+
+    @Override
+    public void autoLogout() {
+        SecurityContextHolder.clearContext();
     }
 }

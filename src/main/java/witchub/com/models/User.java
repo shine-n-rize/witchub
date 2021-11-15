@@ -4,8 +4,6 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Date;
-import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class User {
 
@@ -13,12 +11,11 @@ public class User {
     private int userId;
 
     @NotEmpty
-    private String username;
+    private String username;    // remove
 
     @NotEmpty
     private String firstName;
 
-    private String middleName;
     private String lastName;
 
     @NotEmpty
@@ -28,32 +25,32 @@ public class User {
     @NotEmpty
     private String phoneNo;
 
+    private boolean status;
+
     private String role;
     private String password;
-    private LocalDateTime dateCreated;
+    private Date dateCreated;
 
     // address
     private String houseNo;
     private String street;
     private String city;
-    private String pinCode;
 
-    public User(int userId, String username, String firstName, String middleName, String lastName, String email, String phoneNo, String role, String password, LocalDateTime dateCreated, String houseNo, String street, String city, String pinCode) {
-        this.userId = userId;
-        this.username = username;
-        this.firstName = firstName;
-        this.middleName = middleName;
-        this.lastName = lastName;
-        this.email = email;
-        this.phoneNo = phoneNo;
-        this.role = role;
-        this.password = password;
-        this.dateCreated = dateCreated;
-        this.houseNo = houseNo;
-        this.street = street;
-        this.city = city;
-        this.pinCode = pinCode;
-    }
+//    public User(int userId, String username, String firstName, String lastName, String email, String phoneNo, String status, String role, String password, LocalDateTime dateCreated, String houseNo, String street, String city) {
+//        this.userId = userId;
+//        this.username = username;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.email = email;
+//        this.phoneNo = phoneNo;
+//        this.status = status;
+//        this.role = role;
+//        this.password = password;
+//        this.dateCreated = dateCreated;
+//        this.houseNo = houseNo;
+//        this.street = street;
+//        this.city = city;
+//    }
 
     public int getUserId() {
         return userId;
@@ -77,14 +74,6 @@ public class User {
 
     public void setFirstName(String firstName) {
         this.firstName = firstName;
-    }
-
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
     }
 
     public String getLastName() {
@@ -111,6 +100,14 @@ public class User {
         this.phoneNo = phoneNo;
     }
 
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
     public String getRole() {
         return role;
     }
@@ -127,11 +124,11 @@ public class User {
         this.password = password;
     }
 
-    public LocalDateTime getDateCreated() {
+    public Date getDateCreated() {
         return dateCreated;
     }
 
-    public void setDateCreated(LocalDateTime dateCreated) {
+    public void setDateCreated(Date dateCreated) {
         this.dateCreated = dateCreated;
     }
 
@@ -159,31 +156,22 @@ public class User {
         this.city = city;
     }
 
-    public String getPinCode() {
-        return pinCode;
-    }
-
-    public void setPinCode(String pinCode) {
-        this.pinCode = pinCode;
-    }
-
     @Override
     public String toString() {
         return "User{" +
                 "userId=" + userId +
                 ", username='" + username + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", middleName='" + middleName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
+                ", status=" + status +
                 ", role='" + role + '\'' +
                 ", password='" + password + '\'' +
                 ", dateCreated=" + dateCreated +
                 ", houseNo='" + houseNo + '\'' +
                 ", street='" + street + '\'' +
                 ", city='" + city + '\'' +
-                ", pinCode='" + pinCode + '\'' +
                 '}';
     }
 }

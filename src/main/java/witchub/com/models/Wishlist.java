@@ -8,12 +8,12 @@ public class Wishlist {
     private int wishlistId;
 
     // foreign key(s)
-    private int buyerId;
+    private int userId;
     private int productId;
 
     public Wishlist(int wishlistId, int buyerId, int productId) {
         this.wishlistId = wishlistId;
-        this.buyerId = buyerId;
+        this.userId = buyerId;
         this.productId = productId;
     }
 
@@ -25,12 +25,12 @@ public class Wishlist {
         this.wishlistId = wishlistId;
     }
 
-    public int getBuyerId() {
-        return buyerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setBuyerId(int buyerId) {
-        this.buyerId = buyerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getProductId() {
@@ -45,7 +45,7 @@ public class Wishlist {
     public String toString() {
         return "Wishlist{" +
                 "wishlistId=" + wishlistId +
-                ", buyerId=" + buyerId +
+                ", buyerId=" + userId +
                 ", productId=" + productId +
                 '}';
     }

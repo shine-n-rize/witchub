@@ -15,13 +15,16 @@ public class Product {
 
     private String description;
 
-    @NotEmpty
+//    @NotEmpty
     @Min(0)
     private int price;
 
-    @NotEmpty
+//    @NotEmpty
     @Min(1)
     private int stock;
+
+    @NotEmpty
+    private String image;
 
     private float rating;
     private boolean isRequested;
@@ -30,17 +33,17 @@ public class Product {
     // foreign key(s)
     private int sellerId;
 
-    public Product(int productId, String title, String description, int price, int stock, float rating, boolean isRequested, Date dateAdded, int sellerId) {
-        this.productId = productId;
-        this.title = title;
-        this.description = description;
-        this.price = price;
-        this.stock = stock;
-        this.rating = rating;
-        this.isRequested = isRequested;
-        this.dateAdded = dateAdded;
-        this.sellerId = sellerId;
-    }
+//    public Product(int productId, String title, String description, int price, int stock, float rating, boolean isRequested, Date dateAdded, int sellerId) {
+//        this.productId = productId;
+//        this.title = title;
+//        this.description = description;
+//        this.price = price;
+//        this.stock = stock;
+//        this.rating = rating;
+//        this.isRequested = isRequested;
+//        this.dateAdded = dateAdded;
+//        this.sellerId = sellerId;
+//    }
 
     public int getProductId() {
         return productId;
@@ -80,6 +83,16 @@ public class Product {
 
     public void setStock(int stock) {
         this.stock = stock;
+    }
+
+    public String getImage() {
+        if(image == null)
+            return null;
+        return "/src/main/resources/static/assets/products/" + productId + "/" + image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public float getRating() {
@@ -122,6 +135,7 @@ public class Product {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", stock=" + stock +
+                ", image='" + image +
                 ", rating=" + rating +
                 ", isRequested=" + isRequested +
                 ", dateAdded=" + dateAdded +

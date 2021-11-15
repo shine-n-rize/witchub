@@ -11,13 +11,13 @@ public class Request {
 
     // foreign key(s)
     private int productId;
-    private int buyerId;
+    private int userId;
 
     public Request(int requestId, String response, int productId, int buyerId) {
         this.requestId = requestId;
         this.response = response;
         this.productId = productId;
-        this.buyerId = buyerId;
+        this.userId = buyerId;
     }
 
     public int getRequestId() {
@@ -44,12 +44,12 @@ public class Request {
         this.productId = productId;
     }
 
-    public int getBuyerId() {
-        return buyerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setBuyerId(int buyerId) {
-        this.buyerId = buyerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Request {
                 "requestId=" + requestId +
                 ", response='" + response + '\'' +
                 ", productId=" + productId +
-                ", buyerId=" + buyerId +
+                ", buyerId=" + userId +
                 '}';
     }
 }

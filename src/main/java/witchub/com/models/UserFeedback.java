@@ -5,10 +5,10 @@ import javax.validation.constraints.NotNull;
 import java.sql.Date;
 import java.sql.Time;
 
-public class BuyerFeedback {
+public class UserFeedback {
 
     @NotNull
-    private int buyerFeedbackId;
+    private int userFeedbackId;
 
     private Date date;
     private Time time;
@@ -22,26 +22,26 @@ public class BuyerFeedback {
     private String response;
 
     // foreign key(s)
-    private int buyerId;
+    private int userId;
     private int staffId;
 
-    public BuyerFeedback(int feedbackId, Date date, Time time, String subject, String message, String response, int userId, int staffId) {
-        this.buyerFeedbackId = feedbackId;
+    public UserFeedback(int feedbackId, Date date, Time time, String subject, String message, String response, int userId, int staffId) {
+        this.userFeedbackId = feedbackId;
         this.date = date;
         this.time = time;
         this.subject = subject;
         this.message = message;
         this.response = response;
-        this.buyerId = userId;
+        this.userId = userId;
         this.staffId = staffId;
     }
 
-    public int getBuyerFeedbackId() {
-        return buyerFeedbackId;
+    public int getUserFeedbackId() {
+        return userFeedbackId;
     }
 
-    public void setBuyerFeedbackId(int buyerFeedbackId) {
-        this.buyerFeedbackId = buyerFeedbackId;
+    public void setUserFeedbackId(int userFeedbackId) {
+        this.userFeedbackId = userFeedbackId;
     }
 
     public Date getDate() {
@@ -84,12 +84,12 @@ public class BuyerFeedback {
         this.response = response;
     }
 
-    public int getBuyerId() {
-        return buyerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setBuyerId(int buyerId) {
-        this.buyerId = buyerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getStaffId() {
@@ -103,13 +103,13 @@ public class BuyerFeedback {
     @Override
     public String toString() {
         return "Feedback{" +
-                "feedbackId=" + buyerFeedbackId +
+                "feedbackId=" + userFeedbackId +
                 ", date=" + date +
                 ", time=" + time +
                 ", subject='" + subject + '\'' +
                 ", message='" + message + '\'' +
                 ", response='" + response + '\'' +
-                ", userId=" + buyerId +
+                ", userId=" + userId +
                 ", staffId=" + staffId +
                 '}';
     }

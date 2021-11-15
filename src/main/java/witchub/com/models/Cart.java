@@ -11,14 +11,14 @@ public class Cart {
     private int totalPrice;
 
     // foreign key(s)
-    private int buyerId;
+    private int userId;
     private int productId;
 
     public Cart(int cartId, int quantity, int totalPrice, int buyerId, int productId) {
         this.cartId = cartId;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
-        this.buyerId = buyerId;
+        this.userId = buyerId;
         this.productId = productId;
     }
 
@@ -46,12 +46,12 @@ public class Cart {
         this.totalPrice = totalPrice;
     }
 
-    public int getBuyerId() {
-        return buyerId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setBuyerId(int buyerId) {
-        this.buyerId = buyerId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public int getProductId() {
@@ -68,7 +68,7 @@ public class Cart {
                 "cartId=" + cartId +
                 ", quantity=" + quantity +
                 ", totalPrice=" + totalPrice +
-                ", buyerId=" + buyerId +
+                ", buyerId=" + userId +
                 ", productId=" + productId +
                 '}';
     }

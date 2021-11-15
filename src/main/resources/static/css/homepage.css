@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --my-orange: rgb(212, 109, 6);
+    --my-violet: rgba(107, 15, 59, 0.92);
+    --my-light-violet: rgb(222, 22, 119);
+    --my-med-violet: rgb(179, 24, 104);
+}
+
+html{
+    scroll-behavior: smooth;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 18px;
+    font-family: 'Montserrat';
+    line-height: 20px;
+    color: white;
+    background-color: black;
+}
+
+a{
+    color: white;
+    font-weight: 500;
+}
+
+a:hover{
+    color: var(--my-light-violet);
+}
+
+.header-background{
+    position: static;
+    display: block;
+    overflow: visible;
+    top: 0;
+    height: auto;
+    min-height: 750px;
+    margin-bottom: 50px;
+    padding-bottom: 70px;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(50,58,69,0.9)));
+    background-image: linear-gradient(180deg, rgba(150,58,69,0.25), rgba(150,58,69,0.54)), url("/assets/homepage/home_bg.jpg");
+    flex-direction: column;
+    background-position: 0px 0px, 100% 50%;
+    background-size: auto, cover;
+    white-space: normal;
+    object-fit: fill;
+    -o-object-fit: fill;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+}
+
+.sticky-nav{
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    padding: 10px;
+    z-index: 1;
+    -webkit-align-self: auto;
+    -ms-flex-item-align: auto;
+    -ms-grid-row-align: auto;
+    align-self: auto;
+    -webkit-box-ordinal-group: 1;
+    -webkit-order: 0;
+    order: 0;
+    /*rgba(234, 99, 14, 0.86)*/
+    background-color: rgba(15, 1, 34, 0.46);
+}
+
+.navbar .navbar-brand a{
+    padding: 1rem 0;
+    display: block;
+    text-decoration: none;
+}
+
+.navbar-brand{
+    padding-left: 10px;
+    font-size: 2.2rem;
+    color: white;
+}
+
+.navbar-toggler{
+    border: none;
+    padding: 10px 6px;
+    outline: none;
+}
+
+.navbar-toggler span{
+    display: block;
+    width: 22px;
+    height: 2px;
+    border: 1px;
+    background: white;
+}
+
+.navbar-toggler span + span{
+    margin-top: 4px;
+    width: 22px;
+}
+
+.navbar-toggler span + span + span{
+    width: 22px;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link{
+    padding: 0.4rem 1rem;
+    font-size: 1.2rem;
+    position: relative;
+    color: white;
+}
+
+.navbar-expand-lg .navbar-nav .nav-link:hover{
+    color: rgb(212, 109, 6);
+}
+
+.navbar-expand-lg .navbar-nav .nav-link.active{
+    /*color: rgb(169, 18, 119);*/
+    color: var(--my-orange);
+}
+
+.heading{
+    font-size: 6rem;
+    font-weight: normal;
+    line-height: 1.4;
+    text-align: center;
+    color: white;
+    margin-top: 170px;
+    margin-bottom: 8px;
+    min-height: 100px;
+}
+
+.new-arrivals{
+    text-align: center;
+}
+
+.card-title{
+    color: black;
+}
+
+.card:hover{
+    -webkit-text-fill-color: white;
+    background-color: var(--my-violet);
+}
+
+.card-text{
+    color: black;
+}
+
+#sidebar-nav {
+    width: 160px;
+}
