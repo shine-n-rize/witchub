@@ -97,4 +97,11 @@ public class SellerController {
         productService.delete(productId);
         return "redirect:/self/gallery";
     }
+
+    @GetMapping({"/product"})
+    public String viewProduct(@RequestParam int productId, Model model){
+        Product product = productService.getById(productId);
+        model.addAttribute("product", product);
+        return "product";
+    }
 }
