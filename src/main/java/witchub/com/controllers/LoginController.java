@@ -41,10 +41,11 @@ public class LoginController {
 //            return "redirect:/homepage";
 //        }
         if(user.getRole().equals("ADMIN")){
-            return "admin";
+            return "redirect:/admin";
         }
         else if(user.getRole().equals("SELLER")){
-            return "seller/sellerProfile";
+            System.out.println("seller");
+            return "redirect:/self";
         }
 //        String[] roles = user.getRole().split(" ");
 //        for(int i=0;i< roles.length;i++){

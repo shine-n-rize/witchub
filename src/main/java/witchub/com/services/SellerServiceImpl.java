@@ -3,6 +3,7 @@ package witchub.com.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import witchub.com.models.Seller;
 import witchub.com.models.User;
 import witchub.com.repositories.SellerRepository;
 import witchub.com.repositories.UserRepository;
@@ -23,16 +24,15 @@ public class SellerServiceImpl implements SellerService{
     }
 
     @Override
-    public void save(String accountNo) {
-        String encryptAccountNo = bCryptPasswordEncoder.encode(accountNo);
+    public void save() {
         String username = securityService.findLoggedInUsername();
         System.out.println(username);
         User user = userRepository.findByUsername(username);
         System.out.println(user.getRole());
-        sellerRepository.save(user.getUserId(), encryptAccountNo);
+        sellerRepository.save(user.getUserId());
     }
 
-    public int getSellerIdByUserId(int userId){
-        return sellerRepository.getSellerIdByUserId(userId);
+    public Seller getBySellerId(int sellerId){
+        return sellerRepository.findBySellerId(sellerId);
     }
 }

@@ -75,10 +75,10 @@
                                     Products
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">New Arrivals</a></li>
-                                    <li><a class="dropdown-item" href="#">Best Seller</a></li>
+                                    <li><a class="dropdown-item" href="#new_arrivals">New Arrivals</a></li>
+                                    <li><a class="dropdown-item" href="#best_seller">Best Seller</a></li>
                                     <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">All Products</a></li>
+                                    <li><a class="dropdown-item" href="#all_products">All Products</a></li>
                                 </ul>
                             </li>
 
@@ -86,7 +86,10 @@
 <!--                                <a class="nav-link" href="#">FAQs</a>-->
 <!--                            </li>-->
                             <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href="#about">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#contacts">Contact Us</a>
                             </li>
 
                             <li class="nav-item" th:if="not ${loginStatus}">
@@ -96,15 +99,15 @@
                                 <a class="nav-link" th:href="@{/login}">Login</a>
                             </li>
 
+<!--                            <li class="nav-item" th:if="${loginStatus}">-->
+<!--                                <a class="nav-link" href="#">Wishlist</a>-->
+<!--                            </li>-->
                             <li class="nav-item" th:if="${loginStatus}">
-                                <a class="nav-link" href="#">Wishlist</a>
+                                <a class="nav-link" th:href="@{/cart}">Cart</a>
                             </li>
-                            <li class="nav-item" th:if="${loginStatus}">
-                                <a class="nav-link" href="#">Cart</a>
-                            </li>
-                            <li class="nav-item" th:if="${loginStatus}">
-                                <a class="nav-link" href="#">Profile</a>
-                            </li>
+<!--                            <li class="nav-item" th:if="${loginStatus}">-->
+<!--                                <a class="nav-link" th:href="@{/buyerProfile}">Profile</a>-->
+<!--                            </li>-->
                             <li class="nav-item" th:if="${loginStatus}">
                                 <a class="nav-link" th:href="@{/logout}">Logout</a>
                             </li>
@@ -118,123 +121,548 @@
         <h1 class="heading">W I T &nbsp;&nbsp; H U B</h1>
     </div>
 
-    <div class="new-arrivals">
+    <div class="new-arrivals" id="new_arrivals" style="padding-top: 50px">
         <h1>New Arrivals</h1>
         <hr class="bg-light mx-5"/>
 
         <div class="container">
 <!--            <img th:src="@{assets/logo.jpg}" class="card-img-top" alt="">-->
             <div class="row row-cols-1 row-cols-md-4 g-4">
-                <div class="col">
+                <div class="col" th:each="product: ${products}">
                     <div class="card h-100">
                         <div class="card-img">
-                            <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">
+                            <img th:src="@{${product.getImage()}}" class="card-img-top" th:alt="${product.getImage()}">
                         </div>
                         <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Rs. 189
+                            <h5 class="card-title" th:text="${product.getTitle()}"></h5>
+                            <p class="card-text">Rs. <span th:text="${product.getPrice()}"></span>
+<!--                            <h5 class="card-title">Stars</h5>-->
+<!--                            <p class="card-text">Rs. 100-->
                                 <span>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-heart"></i>
-                                    <i class="fas fa-shopping-cart"></i>
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+                                    <a style="color: black" th:href="@{cart/addProduct(productId=${product.getProductId()})}">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
                                 </span>
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-img">
-                            <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Rs. 189
-                                <span>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-heart"></i>
-                                    <i class="fas fa-shopping-cart"></i>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-img">
-                            <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Rs. 189
-                                <span>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-heart"></i>
-                                    <i class="fas fa-shopping-cart"></i>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <div class="card-img">
-                            <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">Rs. 189
-                                <span>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-heart"></i>
-                                    <i class="fas fa-shopping-cart"></i>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a short card.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card h-100">
-                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                </div>
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Flowers</h5>-->
+<!--                            <p class="card-text">Rs. 499-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/b19.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Moon</h5>-->
+<!--                            <p class="card-text">Rs. 399-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/b18.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Stones</h5>-->
+<!--                            <p class="card-text">Rs. 899-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/b24.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Stay</h5>-->
+<!--                            <p class="card-text">Rs. 999-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/b11.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Ocean</h5>-->
+<!--                            <p class="card-text">Rs. 849-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/b8.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Purple</h5>-->
+<!--                            <p class="card-text">Rs. 1899-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/b4.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Circles</h5>-->
+<!--                            <p class="card-text">Rs. 759-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+
+
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Card title</h5>-->
+<!--                            <p class="card-text">This is a short card.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Card title</h5>-->
+<!--                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Card title</h5>-->
+<!--                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Card title</h5>-->
+<!--                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
             </div>
         </div>
 
     </div>
 
-    <!-- fontawesome script -->
+<div class="new-arrivals" id="best_seller" style="padding-top: 100px">
+    <h1>Best Seller</h1>
+    <hr class="bg-light mx-5"/>
+
+    <div class="container">
+        <!--            <img th:src="@{assets/logo.jpg}" class="card-img-top" alt="">-->
+        <div class="row row-cols-1 row-cols-md-4 g-4">
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-img">
+                        <img th:src="@{assets/c1.jpg}" class="card-img-top" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Heart</h5>
+                        <p class="card-text">Rs. 49
+                            <span>
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+                                    <i class="fas fa-shopping-cart"></i>
+                                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-img">
+                        <img th:src="@{assets/c2.jpg}" class="card-img-top" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Love</h5>
+                        <p class="card-text">Rs. 99
+                            <span>
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+                                    <i class="fas fa-shopping-cart"></i>
+                                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-img">
+                        <img th:src="@{assets/c3.jpg}" class="card-img-top" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Cups</h5>
+                        <p class="card-text">Rs. 3999
+                            <span>
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+                                    <i class="fas fa-shopping-cart"></i>
+                                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card h-100">
+                    <div class="card-img">
+                        <img th:src="@{assets/c4.jpg}" class="card-img-top" alt="">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">Green</h5>
+                        <p class="card-text">Rs. 299
+                            <span>
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+                                    <i class="fas fa-shopping-cart"></i>
+                                </span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="new-arrivals" id="all_products" style="padding-top: 100px">
+        <h1>All Products</h1>
+        <hr class="bg-light mx-5"/>
+
+        <div class="container">
+            <!--            <img th:src="@{assets/logo.jpg}" class="card-img-top" alt="">-->
+            <div class="row row-cols-1 row-cols-md-4 g-4">
+                <div class="col" th:each="product: ${products}">
+                    <div class="card h-100">
+                        <div class="card-img">
+                            <img th:src="@{${product.getImage()}}" class="card-img-top" th:alt="${product.getImage()}">
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${product.getTitle()}"></h5>
+                            <p class="card-text">Rs. <span th:text="${product.getPrice()}"></span>
+                                <!--                            <h5 class="card-title">Stars</h5>-->
+                                <!--                            <p class="card-text">Rs. 100-->
+                                <span>
+<!--                                    <i class="fas fa-star"></i>-->
+                                    <!--                                    <i class="fas fa-heart"></i>-->
+                                    <a style="color: black" th:href="@{cart/addProduct(productId=${product.getProductId()})}">
+                                        <i class="fas fa-shopping-cart"></i>
+                                    </a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/c1.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Heart</h5>-->
+<!--                            <p class="card-text">Rs. 49-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/c2.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Love</h5>-->
+<!--                            <p class="card-text">Rs. 99-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/d3.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Building</h5>-->
+<!--                            <p class="card-text">Rs. 199-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/d4.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Eye</h5>-->
+<!--                            <p class="card-text">Rs. 299-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/d5.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Abstract</h5>-->
+<!--                            <p class="card-text">Rs. 149-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/d6.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Hands</h5>-->
+<!--                            <p class="card-text">Rs. 599-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/d7.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Peepal</h5>-->
+<!--                            <p class="card-text">Rs. 159-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/d8.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Hanging</h5>-->
+<!--                            <p class="card-text">Rs. 999-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/c5.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Leaves</h5>-->
+<!--                            <p class="card-text">Rs. 149-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/d2.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Hut</h5>-->
+<!--                            <p class="card-text">Rs. 1899-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/c7.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Peepal</h5>-->
+<!--                            <p class="card-text">Rs. 1759-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--                <div class="col">-->
+<!--                    <div class="card h-100">-->
+<!--                        <div class="card-img">-->
+<!--                            <img th:src="@{assets/c8.jpg}" class="card-img-top" alt="">-->
+<!--                        </div>-->
+<!--                        <div class="card-body">-->
+<!--                            <h5 class="card-title">Mosaic</h5>-->
+<!--                            <p class="card-text">Rs. 2999-->
+<!--                                <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--                                    <i class="fas fa-shopping-cart"></i>-->
+<!--                                </span>-->
+<!--                            </p>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </div>
+
+<div class="new-arrivals" id="about" style="padding-top: 100px">
+    <h1>About</h1>
+    <hr class="bg-light mx-5"/>
+    <h4 style="padding: 0 150px 300px 150px; font-weight: lighter">
+    Ms Kamalvanshi is a young, creative and emerging artist, lives in Lucknow,
+    Uttar Pradesh.<br>Her passion for life is nothing but just art. It’s a God given gift to her which
+    she wants to celebrate with as many people as possible. To incorporate this, she wants to
+    make an online presence and also collect like-minded artists like her. And here we land with this
+    amazing website. Explore as you like. Happy purchase!
+    </h4>
+</div>
+
+<!-- important links -->
+<div id="contacts" th:fragment="bottom-display" class="mt-5 bg-bottom" style="background: rgba(107, 15, 59, 0.92)">
+    <div class="container text-center text-white pt-5 pb-3">
+        <h1 class="font-weight-bold">Witchub</h1>
+
+        Inspired from Nature, We Create for You
+
+        <br><br><br>
+        <div class="pt-2 pb-1">+918667392173</div>
+        <div class="pt-2 pb-1">witchie.which@witchub.com</div>
+        <i class="fab fa-facebook-f p-2"></i>
+        <i class="fab fa-twitter p-2"></i>
+        <i class="fab fa-linkedin-in p-2"></i>
+        <i class="fab fa-pinterest-p p-2"></i>
+        <br />
+        <hr class="bg-light mx-5"/>
+        <p class="pt-3">
+            Copyright &copy 2021 Witchub, All rights reserved, <a th:href="@{#}">View TnC</a>
+        </p>
+    </div>
+</div>
+
+
+<!-- fontawesome script -->
     <script th:src="@{https://kit.fontawesome.com/1f4b1ad491.js}" crossorigin="anonymous"></script>
 
     <!-- Optional JavaScript; choose one of the two! -->

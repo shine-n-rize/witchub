@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+
+    <!-- CSS only -->
+    <link th:href="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css}" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/homepage.css}">
+    <link rel="stylesheet" th:href="@{/css/seller.css}">
+    <link rel="stylesheet" th:href="@{/css/sellerProfile.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!--    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">-->
+</head>
+
+
+
+<body>
+
+<!--========== HEADER ==========-->
+<header th:fragment="sellerHeader" class="header">
+    <div class="header__container">
+        <img th:src="@{/assets/logo.jpg}" alt="" class="header__img">
+
+        <a th:href="@{/homepage}" class="header__logo">Witchub</a>
+        <a th:href="@{/homepage}" class="header__logo">Home</a>
+        <a th:href="@{/logout}" class="header__logo">Logout</a>
+
+        <!--        <div class="header__search">-->
+        <!--            <input type="search" placeholder="Search" class="header__input">-->
+        <!--            <i class='bx bx-search header__icon'></i>-->
+        <!--        </div>-->
+
+        <div class="header__toggle">
+            <!--            <i class='bx bx-menu' id="header-toggle"></i>-->
+            <i class="fas fa-bars" id="header-toggle"></i>
+        </div>
+    </div>
+</header>
+
+<div class="new-arrivals">
+    <h3 style="color: white">Your Cart</h3>
+    <hr class="bg-light mx-5"/>
+
+    <div class="container">
+        <!--            <img th:src="@{assets/logo.jpg}" class="card-img-top" alt="">-->
+<!--        <div class="row row-cols-1 row-cols-md-4 g-4">-->
+<!--            <div class="col" th:each="cart: ${cartList}">-->
+<!--                <div class="card h-100">-->
+<!--                    <div class="card-img">-->
+<!--                        <img th:src="@{${cart.getProduct().getImage()}}" class="card-img-top" alt="">-->
+<!--                    </div>-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title" th:text="${cart.getProduct().getTitle()}"></h5>-->
+<!--                        <p class="card-text">Rs. <span th:text="${cart.getProduct().getPrice()}"></span>-->
+<!--&lt;!&ndash;                        <h5 class="card-title">Star</h5>&ndash;&gt;-->
+<!--&lt;!&ndash;                        <p class="card-text">Rs. 100&ndash;&gt;-->
+<!--                            <span>-->
+<!--&lt;!&ndash;                                    <i class="fas fa-star"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    <a th:href="@{/cart/addProduct}">&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <i class="fas fa-heart"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                                    </a>&ndash;&gt;-->
+<!--                                <a th:href="@{/cart/delete(cartId=${cart.getCartId()})}">-->
+<!--                                    <i class="fas fa-trash"></i>-->
+<!--                                </a>-->
+<!--&lt;!&ndash;                                    <i class="fas fa-shopping-cart"></i>&ndash;&gt;-->
+<!--                                </span>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col">-->
+<!--                <div class="card h-100">-->
+<!--                    <div class="card-img">-->
+<!--                        <img th:src="@{assets/b21.jpg}" class="card-img-top" alt="">-->
+<!--                    </div>-->
+<!--                    <div class="card-body">-->
+<!--                        <h5 class="card-title">Flower</h5>-->
+<!--                        <p class="card-text">Rs. 499-->
+<!--                            <span>-->
+<!--                                    <i class="fas fa-star"></i>-->
+<!--                                    <i class="fas fa-heart"></i>-->
+<!--&lt;!&ndash;                                    <i class="fas fa-shopping-cart"></i>&ndash;&gt;-->
+<!--                                </span>-->
+<!--                        </p>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+
+        <table class="table table-dark table-hover">
+            <thead>
+            <tr>
+                <th scope="col">Product(s)</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody th:each="cartProduct: ${cartList}">
+            <tr>
+<!--                <th scope="row">1</th>-->
+                <td>
+                    <div>
+                        <img style="height: 100px" th:src="@{${cartProduct.getProduct().getImage()}}">
+                    </div>
+                    <div>
+                        <h6 th:text="${cartProduct.getProduct().getTitle()}"></h6>
+<!--                        <span>&#x20B9</span>-->
+<!--                        <span th:text="${cartProduct.getProduct().getPrice()}"></span>-->
+                    </div>
+                </td>
+                <td>
+                    <div>
+                        <a th:href="@{/cart/updateQuantity(cartId=${cartProduct.getCartId()}, quantity=${cartProduct.getQuantity()-1})}">
+                            <span><i class="fas fa-minus-circle"></i></span>
+                        </a>
+                        <input type="text" style="width: 50px; text-align: center" th:value="${cartProduct.getQuantity()}">
+                        <a th:href="@{/cart/updateQuantity(cartId=${cartProduct.getCartId()}, quantity=${cartProduct.getQuantity()+1})}">
+                            <span><i class="fas fa-plus-circle"></i></span>
+                        </a>
+                    </div>
+                </td>
+                <td>
+                    <span>&#x20B9;</span>
+                    <span th:text="${cartProduct.getProduct().getPrice()*cartProduct.getQuantity()}"></span>
+                </td>
+                <td>
+                    <a th:href="@{/cart/delete(cartId=${cartProduct.getCartId()})}">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="text-center" style="color: white; padding-top: 50px"><b>Total Amount: </b>Rs. <span th:text="${totalPrice}"></span></div>
+
+<div class="mt-5 text-center"><a th:href="@{/order}"><button class="btn btn-dark" type="button">Buy</button></a></div>
+
+<!--========== NAV ==========-->
+<!--<div th:fragment="sellerNavbar" class="nav" id="navbar">-->
+<!--    <nav class="nav__container">-->
+<!--        <div>-->
+<!--            <a href="#" class="nav__link nav__logo">-->
+<!--                &lt;!&ndash;                <i class='bx bxs-disc nav__icon' ></i>&ndash;&gt;-->
+<!--                <img th:src="@{/assets/logo.jpg}" alt="" class="nav__icon">-->
+<!--                <span class="nav__logo-name">Witchub</span>-->
+<!--            </a>-->
+
+<!--            <div class="nav__list">-->
+<!--                <div class="nav__items">-->
+<!--                    &lt;!&ndash;                    <h3 class="nav__subtitle">Profile</h3>&ndash;&gt;-->
+
+<!--                    <a th:href="@{/profile}" class="nav__link active">-->
+<!--                        &lt;!&ndash;                        <i class='bx bx-home nav__icon' ></i>&ndash;&gt;-->
+<!--                        <i class="far fa-user-circle nav__icon"></i>-->
+<!--                        <span class="nav__name">Profile</span>-->
+<!--                    </a>-->
+
+<!--                    <a th:href="@{/addProduct}" class="nav__link">-->
+<!--                        &lt;!&ndash;                        <i class='bx bx-message-rounded nav__icon' ></i>&ndash;&gt;-->
+<!--                        <i class="far fa-plus-square nav__icon"></i>-->
+<!--                        <span class="nav__name">Add Product</span>-->
+<!--                    </a>-->
+
+<!--                    <a th:href="@{/gallery}" class="nav__link">-->
+<!--                        &lt;!&ndash;                        <i class='bx bx-message-rounded nav__icon' ></i>&ndash;&gt;-->
+<!--                        <i class="far fa-image nav__icon"></i>-->
+<!--                        <span class="nav__name">Gallery</span>-->
+<!--                    </a>-->
+
+<!--                    &lt;!&ndash;                    <a href="#" class="nav__link active">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <i class='bx bx-message-rounded nav__icon' ></i>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <span class="nav__name">Home</span>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </a>&ndash;&gt;-->
+
+<!--                    &lt;!&ndash;                    <a href="#" class="nav__link active">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <i class='bx bx-message-rounded nav__icon' ></i>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <span class="nav__name">Gallery</span>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </a>&ndash;&gt;-->
+
+<!--                    &lt;!&ndash;                    <div class="nav__dropdown">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        <a href="#" class="nav__link">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <i class='bx bx-user nav__icon' ></i>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <span class="nav__name">Profile</span>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </a>&ndash;&gt;-->
+
+<!--                    &lt;!&ndash;                        <div class="nav__dropdown-collapse">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            <div class="nav__dropdown-content">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                <a href="#" class="nav__dropdown-item">Passwords</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                <a href="#" class="nav__dropdown-item">Mail</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                                <a href="#" class="nav__dropdown-item">Accounts</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                    </div>&ndash;&gt;-->
+
+<!--                    <a th:href="@{/logout}" class="nav__link">-->
+<!--                        &lt;!&ndash;                        <i class='bx bx-message-rounded nav__icon' ></i>&ndash;&gt;-->
+<!--                        <i class="fas fa-sign-out-alt nav__icon"></i>-->
+<!--                        <span class="nav__name">Logout</span>-->
+<!--                    </a>-->
+<!--                </div>-->
+
+<!--                &lt;!&ndash;                <div class="nav__items">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <h3 class="nav__subtitle">Menu</h3>&ndash;&gt;-->
+
+<!--                &lt;!&ndash;                    <div class="nav__dropdown">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <a href="#" class="nav__link">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <i class='bx bx-bell nav__icon' ></i>&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <span class="nav__name">Notifications</span>&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <i class='bx bx-chevron-down nav__icon nav__dropdown-icon'></i>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        </a>&ndash;&gt;-->
+
+<!--                &lt;!&ndash;                        <div class="nav__dropdown-collapse">&ndash;&gt;-->
+<!--                &lt;!&ndash;                            <div class="nav__dropdown-content">&ndash;&gt;-->
+<!--                &lt;!&ndash;                                <a href="#" class="nav__dropdown-item">Blocked</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                                <a href="#" class="nav__dropdown-item">Silenced</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                                <a href="#" class="nav__dropdown-item">Publish</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                                <a href="#" class="nav__dropdown-item">Program</a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                            </div>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        </div>&ndash;&gt;-->
+
+<!--                &lt;!&ndash;                    </div>&ndash;&gt;-->
+
+<!--                &lt;!&ndash;                    <a href="#" class="nav__link">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <i class='bx bx-compass nav__icon' ></i>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <span class="nav__name">Explore</span>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <a href="#" class="nav__link">&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <i class='bx bx-bookmark nav__icon' ></i>&ndash;&gt;-->
+<!--                &lt;!&ndash;                        <span class="nav__name">Saved</span>&ndash;&gt;-->
+<!--                &lt;!&ndash;                    </a>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--            </div>-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash;        <a th:href="@{/logout}" class="nav__link nav__logout">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <i class='bx bx-log-out nav__icon' ></i>&ndash;&gt;-->
+<!--        &lt;!&ndash;            <span class="nav__name">Logout</span>&ndash;&gt;-->
+<!--        &lt;!&ndash;        </a>&ndash;&gt;-->
+<!--    </nav>-->
+<!--</div>-->
+
+<!--========== CONTENTS ==========-->
+<!--<main>-->
+<!--    <section>-->
+<!--        <div class="container rounded bg-white mt-5 mb-5">-->
+<!--            <div class="row">-->
+<!--                &lt;!&ndash;                <div class="col-md-3 border-right">&ndash;&gt;-->
+<!--                &lt;!&ndash;                    <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span class="font-weight-bold">Edogaru</span><span class="text-black-50">edogaru@mail.com.my</span><span> </span></div>&ndash;&gt;-->
+<!--                &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                <div class="border-right">-->
+<!--                    <div class="p-3 py-5">-->
+<!--                        <div class="d-flex justify-content-between align-items-center mb-3">-->
+<!--                            <h4 class="text-right">Your Profile</h4>-->
+<!--                        </div>-->
+<!--                        <div class="row mt-2">-->
+<!--                            <div class="col-md-6"><label class="labels">Firstname</label><input type="text" class="form-control" placeholder="Shivani" value=""></div>-->
+<!--                            <div class="col-md-6"><label class="labels">Lastname</label><input type="text" class="form-control" value="" placeholder="Swaraj"></div>-->
+<!--                        </div>-->
+<!--                        <div class="row mt-3">-->
+<!--                            <form class="form-signin" th:action="@{/buyerProfile}" method="POST">-->
+<!--                                &lt;!&ndash;                            <div class="col-md-12"><label class="labels"></label>Username<input type="text" class="form-control" placeholder="jack" value=""></div>&ndash;&gt;-->
+<!--                                &lt;!&ndash;                            <div class="col-md-12"><label class="labels"></label>Email<input type="email" class="form-control" placeholder="jackjack@gmail.com" value=""></div>&ndash;&gt;-->
+<!--                                <div class="col-md-12"><label class="labels">Username</label><input type="text" class="form-control" placeholder="vish" value=""></div>-->
+<!--                                <div class="col-md-12"><label class="labels">Email</label><input type="text" class="form-control" placeholder="shivaniswaraj@gmail.com" value=""></div>-->
+<!--                                <div class="col-md-12"><label class="labels">Phone No.</label><input type="text" class="form-control" placeholder="Phone No." value=""></div>-->
+<!--                                <div class="col-md-12"><label class="labels">House No.</label><input type="text" class="form-control" placeholder="House No." value=""></div>-->
+<!--                                <div class="col-md-12"><label class="labels">Street</label><input type="text" class="form-control" placeholder="Street" value=""></div>-->
+<!--                                <div class="col-md-12"><label class="labels">City</label><input type="text" class="form-control" placeholder="City" value=""></div>-->
+<!--                                &lt;!&ndash;                                <div class="col-md-12"><label class="labels">Account No.</label><input type="text" class="form-control" placeholder="Account No." value=""></div>&ndash;&gt;-->
+<!--                            </form>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;                        <div class="row mt-3">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <div class="col-md-6"><label class="labels">Country</label><input type="text" class="form-control" placeholder="country" value=""></div>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                            <div class="col-md-6"><label class="labels">State/Region</label><input type="text" class="form-control" value="" placeholder="state"></div>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                        <adiv class="mt-5 text-center"><a th:href="@{/buyerProfileUpdated}"><button class="btn btn-primary profile-button" type="button">Save</button></a></div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            &lt;!&ndash;                <div class="col-md-4">&ndash;&gt;-->
+<!--            &lt;!&ndash;                    <div class="p-3 py-5">&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div><br>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <div class="col-md-12"><label class="labels">Experience in Designing</label><input type="text" class="form-control" placeholder="experience" value=""></div> <br>&ndash;&gt;-->
+<!--            &lt;!&ndash;                        <div class="col-md-12"><label class="labels">Additional Details</label><input type="text" class="form-control" placeholder="additional details" value=""></div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                    </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--        </div>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--        </div>-->
+<!--    </section>-->
+<!--</main>-->
+
+<!--========== MAIN JS ==========-->
+<script th:src="@{/js/seller.js}"></script>
+<!-- fontawesome script -->
+<script th:src="@{https://kit.fontawesome.com/1f4b1ad491.js}" crossorigin="anonymous"></script>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<!--    <script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js}" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>-->
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+
+<script th:src="@{https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js}" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+<script th:src="@{https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js}" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+</body>
+</html>

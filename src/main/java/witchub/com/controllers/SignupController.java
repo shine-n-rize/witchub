@@ -62,7 +62,7 @@ public class SignupController {
             model.addAttribute("errorMessage", "Invalid Account Number");
             return "/signup";
         }
-        sellerService.save(accountNo);
+        sellerService.save();
         return "redirect:/login";
     }
 
@@ -72,10 +72,10 @@ public class SignupController {
             return "redirect:/signupError";
         }
         userService.save(user);
-        if(user.getRole().equals("4")){
-            model.addAttribute("user", user);
-            return "accountInfo";
-        }
+//        if(user.getRole().equals("4")){
+//            model.addAttribute("user", user);
+//            return "accountInfo";
+//        }
 //        System.out.println(user.getRole());
         User user1 = userService.findByUsername(user.getEmail());
         try {

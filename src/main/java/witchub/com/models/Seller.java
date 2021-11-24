@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 
 public class Seller {
 
+    // primary + foreign key
     @NotNull
     private int sellerId;
 
@@ -13,9 +14,6 @@ public class Seller {
 
     @NotEmpty
     private String accountNo;
-
-    // foreign key(s)
-    private int userId;
 
 //    public Seller(int sellerId, boolean isValid, int wallet, float demandRate, String accountNo, int userId) {
 //        this.sellerId = sellerId;
@@ -57,14 +55,6 @@ public class Seller {
         this.accountNo = accountNo;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
-    }
-
     @Override
     public String toString() {
         return "Seller{" +
@@ -72,7 +62,6 @@ public class Seller {
                 ", wallet=" + wallet +
                 ", demandRate=" + demandRate +
                 ", accountNo='" + accountNo + '\'' +
-                ", userId=" + userId +
                 '}';
     }
 }

@@ -16,19 +16,21 @@ import java.sql.SQLException;
 public class UserRepositoryImpl implements UserRepository{
     JdbcTemplate jdbcTemplate;
     private DateTimeUtility dateTimeUtil;
+    private SellerRepository sellerRepository;
 
     @Autowired
-    public UserRepositoryImpl(JdbcTemplate jdbcTemplate, DateTimeUtility dateTimeUtil) {
+    public UserRepositoryImpl(JdbcTemplate jdbcTemplate, DateTimeUtility dateTimeUtil, SellerRepository sellerRepository) {
         this.jdbcTemplate = jdbcTemplate;
         this.dateTimeUtil = dateTimeUtil;
+        this.sellerRepository = sellerRepository;
     }
-
 
     private RowMapper<User> userRowMapper = new RowMapper<User>() {
         @Override
         public User mapRow(ResultSet rs, int rowNum) throws SQLException {
             User user = new User();
             user.setUserId(rs.getInt("user_id"));
+            user.setUsername(rs.getString("username"));
             user.setFirstName(rs.getString("first_name"));
             user.setLastName(rs.getString("last_name"));
             user.setEmail(rs.getString("email"));
@@ -71,6 +73,14 @@ public class UserRepositoryImpl implements UserRepository{
     public void save(User user) {
         String query = "INSERT INTO User(username,first_name,last_name,email,phone_no,status,role,password,date_created,house_no,street,city) values(?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplate.update(query,user.getUsername(),user.getFirstName(),user.getLastName(),user.getEmail(),user.getPhoneNo(),user.isStatus(),user.getRole(),user.getPassword(),dateTimeUtil.getCurrentDateTime("yyyy-MM-dd"),user.getHouseNo(),user.getStreet(),user.getCity());
+        if(user.getRole().equals("4")){
+            String q = "SELECT user_id FROM User WHERE email = '"+user.getEmail()+"'";
+//            System.out.println("user id: ");
+//            System.out.println(jdbcTemplate.queryForObject(q, Integer.class));
+//            System.out.println("huh");
+//            int userId = jdbcTemplate.queryForObject(q, Integer.class);
+            sellerRepository.save(jdbcTemplate.queryForObject(q, Integer.class));
+        }
     }
 
     @Override

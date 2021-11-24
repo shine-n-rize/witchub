@@ -86,9 +86,7 @@ public class Product {
     }
 
     public String getImage() {
-        if(image == null)
-            return null;
-        return "/src/main/resources/static/assets/products/" + productId + "/" + image;
+        return image;
     }
 
     public void setImage(String image) {

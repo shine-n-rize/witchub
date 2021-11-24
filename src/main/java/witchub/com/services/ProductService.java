@@ -1,8 +1,13 @@
 package witchub.com.services;
 
-import org.springframework.ui.Model;
 import witchub.com.models.Product;
 
+import java.util.List;
+
 public interface ProductService {
-    public void addProduct(String username, Product product);
+    public List<Product> getBySeller(int sellerId);
+    public Product getById(int sellerId);
+    public void addProduct(Product product);
+    public List<Product> getAll();
+    public void delete(int productId);
 }
