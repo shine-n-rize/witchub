@@ -129,7 +129,7 @@
 <!--            <img th:src="@{assets/logo.jpg}" class="card-img-top" alt="">-->
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <div class="col" th:each="product: ${products}">
-                    <a style="text-decoration: none; color: black; font-weight: 300" th:href="@{/product(productId=${product.getProductId()})}">
+                    <a style="text-decoration: none; color: black; font-weight: 400" th:href="@{/product(productId=${product.getProductId()})}">
                     <div class="card h-100">
                         <div class="card-img">
                             <img th:src="@{${product.getImage()}}" class="card-img-top" th:alt="${product.getImage()}">
@@ -401,7 +401,8 @@
             <!--            <img th:src="@{assets/logo.jpg}" class="card-img-top" alt="">-->
             <div class="row row-cols-1 row-cols-md-4 g-4">
                 <div class="col" th:each="product: ${products}">
-                    <div class="card h-100">
+                    <a style="text-decoration: none; color: black; font-weight: 400" th:href="@{/product(productId=${product.getProductId()})}">
+                        <div class="card h-100">
                         <div class="card-img">
                             <img th:src="@{${product.getImage()}}" class="card-img-top" th:alt="${product.getImage()}">
                         </div>
@@ -420,6 +421,7 @@
                             </p>
                         </div>
                     </div>
+                    </a>
                 </div>
 <!--                <div class="col">-->
 <!--                    <div class="card h-100">-->

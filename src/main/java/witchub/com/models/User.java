@@ -11,7 +11,7 @@ public class User {
     private int userId;
 
     @NotEmpty
-    private String username;    // remove
+    private String username;
 
     @NotEmpty
     private String firstName;

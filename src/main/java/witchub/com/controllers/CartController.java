@@ -72,7 +72,7 @@ public class CartController {
     @GetMapping("/cart/updateQuantity")
     public String addQuantity(@RequestParam int cartId, @RequestParam int quantity){
         if(quantity<0){
-            cartService.delete(cartId);
+            cartService.updateQuantity(0, cartId);
         }
         else{
             cartService.updateQuantity(quantity, cartId);

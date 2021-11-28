@@ -37,12 +37,11 @@ CREATE TABLE IF NOT EXISTS Verification_Token(
 
 CREATE TABLE IF NOT EXISTS Seller(
     seller_id int NOT NULL AUTO_INCREMENT,
-    user_id int NOT NULL,
     wallet int DEFAULT NULL,
     demmand_rate float DEFAULT NULL,
     account_no varchar(255) NOT NULL UNIQUE,
     PRIMARY KEY (seller_id),
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (seller_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Staff(
@@ -52,7 +51,7 @@ CREATE TABLE IF NOT EXISTS Staff(
     join_date date DEFAULT NULL,
     end_date date DEFAULT NULL,
     PRIMARY KEY (staff_id),
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (staff_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Product(
@@ -98,13 +97,17 @@ CREATE TABLE IF NOT EXISTS Cart(
 
 CREATE TABLE IF NOT EXISTS Wishlist(
     wishlist_id int NOT NULL AUTO_INCREMENT,
+    user_id int NOT NULL,
+    product_id int NOT NULL,
     PRIMARY KEY (wishlist_id),
-    FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE
+    FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (product_id) REFERENCES Product(product_id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS Review(
     review_id int NOT NULL AUTO_INCREMENT,
+    user_id int NOT NULL,
+    product_id int NOT NULL,
     rating int NOT NULL,
     comment longtext DEFAULT NULL,
     PRIMARY KEY (review_id),
@@ -134,6 +137,7 @@ CREATE TABLE IF NOT EXISTS Payment(
 
 CREATE TABLE IF NOT EXISTS OOrder(
     order_id int NOT NULL AUTO_INCREMENT,
+    payment_id int NOT NULL,
     date_placed date NOT NULL,
     status enum ('Dispatched', 'Arriving', 'Delivered', 'Cancelled') DEFAULT 'Dispatched' NOT NULL,
     PRIMARY KEY (order_id),
@@ -142,6 +146,7 @@ CREATE TABLE IF NOT EXISTS OOrder(
 
 CREATE TABLE IF NOT EXISTS User_Feedback(
     user_fb_id int NOT NULL AUTO_INCREMENT,
+    user_id int NOT NULL,
     fb_date date NOT NULL,
     fb_time time NOT NULL,
     subj varchar(255) NOT NULL,

@@ -31,15 +31,6 @@ public class LoginController {
     @RequestMapping("/welcome")
     public String welcome(Principal principal, Model model){
         User user = userService.findByUsername(principal.getName());
-//        if(!user.isStatus()) {
-//            model.addAttribute("verification",false);
-//            securityService.notVerified();
-//            return "redirect:/homepage";
-//        }
-//        if(user.getStatus().equals("dead")){
-//            securityService.notVerified();
-//            return "redirect:/homepage";
-//        }
         if(user.getRole().equals("ADMIN")){
             return "redirect:/admin";
         }
@@ -47,11 +38,6 @@ public class LoginController {
             System.out.println("seller");
             return "redirect:/self";
         }
-//        String[] roles = user.getRole().split(" ");
-//        for(int i=0;i< roles.length;i++){
-//            if(roles[i].equals("admin"))
-//                return "redirect:/admin";
-//        }
         model.addAttribute("username",securityService.findLoggedInUsername());
         System.out.println(securityService.findLoggedInUsername());
         return "redirect:/homepage";

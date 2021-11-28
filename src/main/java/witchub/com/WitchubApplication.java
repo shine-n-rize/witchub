@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@EnableEncryptableProperties	// to encrypt database credentials
+@EnableEncryptableProperties	// to encrypt credentials
 public class WitchubApplication {
 
 	public static void main(String[] args) {
