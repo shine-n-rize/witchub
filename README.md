@@ -21,7 +21,7 @@ For the demo link click [here](https://drive.google.com/file/d/1I2cWdr9AZu_RsGuS
 - Total Attributes: 82
 
 ## Roles:
-- Admin
+<!-- - Admin -->
 - Buyer
 - Seller
 
